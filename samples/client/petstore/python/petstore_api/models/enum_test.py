@@ -79,6 +79,7 @@ class EnumTest(object):
         :type: str
         """
         allowed_values = ["UPPER", "lower"]
+        
         if enum_string not in allowed_values:
             raise ValueError(
                 "Invalid value for `enum_string` ({0}), must be one of {1}"
@@ -107,7 +108,8 @@ class EnumTest(object):
         :param enum_integer: The enum_integer of this EnumTest.
         :type: int
         """
-        allowed_values = ["1", "-1"]
+        
+        allowed_values = [1, -1]
         if enum_integer not in allowed_values:
             raise ValueError(
                 "Invalid value for `enum_integer` ({0}), must be one of {1}"
@@ -136,7 +138,8 @@ class EnumTest(object):
         :param enum_number: The enum_number of this EnumTest.
         :type: float
         """
-        allowed_values = ["1.1", "-1.2"]
+        
+        allowed_values = [1.1, -1.2]
         if enum_number not in allowed_values:
             raise ValueError(
                 "Invalid value for `enum_number` ({0}), must be one of {1}"

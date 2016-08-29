@@ -180,6 +180,7 @@ class Order(object):
         :type: str
         """
         allowed_values = ["placed", "approved", "delivered"]
+        
         if status not in allowed_values:
             raise ValueError(
                 "Invalid value for `status` ({0}), must be one of {1}"

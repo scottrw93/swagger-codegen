@@ -98,8 +98,9 @@ class MapTest(object):
         :param map_of_enum_string: The map_of_enum_string of this MapTest.
         :type: dict(str, str)
         """
-        allowed_values = ["UPPER", "lower"]
-        if map_of_enum_string not in allowed_values:
+        allowed_values = set(["UPPER", "lower"])
+        
+        if set(map_of_enum_string.values()) > allowed_values: # Check it is a subset
             raise ValueError(
                 "Invalid value for `map_of_enum_string` ({0}), must be one of {1}"
                 .format(map_of_enum_string, allowed_values)

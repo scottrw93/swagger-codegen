@@ -76,6 +76,7 @@ class EnumArrays(object):
         :type: str
         """
         allowed_values = [">=", "$"]
+        
         if just_symbol not in allowed_values:
             raise ValueError(
                 "Invalid value for `just_symbol` ({0}), must be one of {1}"
@@ -104,8 +105,9 @@ class EnumArrays(object):
         :param array_enum: The array_enum of this EnumArrays.
         :type: list[str]
         """
-        allowed_values = ["fish", "crab"]
-        if array_enum not in allowed_values:
+        allowed_values = set(["fish", "crab"])
+        
+        if set(array_enum) > allowed_values: # Check it is a subset
             raise ValueError(
                 "Invalid value for `array_enum` ({0}), must be one of {1}"
                 .format(array_enum, allowed_values)

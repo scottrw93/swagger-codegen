@@ -60,8 +60,16 @@ class {{classname}}(object):
         :type: {{datatype}}
         """
 {{#isEnum}}
-        allowed_values = [{{#allowableValues}}{{#values}}"{{{this}}}"{{^-last}}, {{/-last}}{{/values}}{{/allowableValues}}]
+{{#isNotContainer}}
+        {{#isString}}allowed_values = [{{#allowableValues}}{{#values}}"{{{this}}}"{{^-last}}, {{/-last}}{{/values}}{{/allowableValues}}]{{/isString}}
+        {{^isString}}allowed_values = [{{#allowableValues}}{{#values}}{{{this}}}{{^-last}}, {{/-last}}{{/values}}{{/allowableValues}}]{{/isString}}
         if {{{name}}} not in allowed_values:
+{{/isNotContainer}}
+{{#isContainer}}
+        {{#items.isString}}allowed_values = set([{{#allowableValues}}{{#values}}"{{{this}}}"{{^-last}}, {{/-last}}{{/values}}{{/allowableValues}}]){{/items.isString}}
+        {{^items.isString}}allowed_values = set([{{#allowableValues}}{{#values}}{{{this}}}{{^-last}}, {{/-last}}{{/values}}{{/allowableValues}}]){{/items.isString}}
+        if set({{{name}}}{{#isMapContainer}}.values(){{/isMapContainer}}) > allowed_values: # Check it is a subset
+{{/isContainer}}
             raise ValueError(
                 "Invalid value for `{{{name}}}` ({0}), must be one of {1}"
                 .format({{{name}}}, allowed_values)

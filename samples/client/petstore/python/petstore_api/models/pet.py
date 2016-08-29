@@ -203,6 +203,7 @@ class Pet(object):
         :type: str
         """
         allowed_values = ["available", "pending", "sold"]
+        
         if status not in allowed_values:
             raise ValueError(
                 "Invalid value for `status` ({0}), must be one of {1}"
